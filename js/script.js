@@ -16,10 +16,36 @@ let countdown = setInterval(function () {
     let hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     let minutes = Math.floor(difference % (1000 * 60 * 60) / (1000 * 60));
     let seconds = Math.floor(difference % (1000 * 60) / 1000);
-    document.querySelector("#countdown").innerHTML = `${days} ${hours} ${minutes} ${seconds}`;
+    let words = ["secondi", "minuti", "ore", "giorni"];
 
+    checkPlural(days, hours, minutes, seconds, words);
+
+
+    document.querySelector("#countdown").innerHTML = `- ${days} ${words[3]} ${hours} ${words[2]} ${minutes} ${words[1]} ${seconds} ${words[0]}`;
+
+
+    if (difference < 0) {
+
+        document.querySelector("#countdown").innerHTML = `- ${0} ${0} ${0} ${0}`;
+    }
 }, 1000)
 
+
+function checkPlural(days, hours, minutes, seconds, words) {
+    if (seconds == 1) {
+        words[0] = "secondo";
+    }
+    if (minutes == 1) {
+        words[1] = "minuto";
+    }
+    if (hours == 1) {
+        words[2] = "ora";
+    }
+    if (days == 1) {
+        words[3] = "giorno";
+    }
+
+}
 
 
 
