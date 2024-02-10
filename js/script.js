@@ -45,13 +45,13 @@ let countdown = setInterval(function () {
 
     if (difference < 0) {
 
+        clearInterval(countdown);
+
         document.querySelector("#countdown").innerHTML = `- ${"00"} ${"00"}:${"00"}:${"00"}`;
         activateFireworks.style.opacity = 1;
         countdownElement.classList.add("count-over");
         document.querySelector(".title").innerHTML = "Good Morning!"
         document.querySelector(".title").classList.add("count-over-text");
-
-
     }
     circleDaysStroke.style.strokeDashoffset = 440 - (440 * days) / 365;
     circleHoursStroke.style.strokeDashoffset = 440 - (440 * hours) / 24;
