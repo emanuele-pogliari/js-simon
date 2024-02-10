@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* reset rules */
+
+
+body {
+    background-color: rgb(72, 72, 125);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#countdown {
+    display: flex;
+    gap: 30px
+}
+
+#countdown .circle-time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+#countdown .circle-time svg {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+#countdown .circle-time svg circle {
+    width: 100%;
+    height: 100%;
+    fill: transparent;
+    stroke-width: 9;
+    stroke: #282828;
+    transform: translate(5px, 5px);
+}
+
+#countdown .circle-time svg circle:nth-child(2) {
+    stroke: var(--clr);
+    stroke-dasharray: 440;
+}
+
+#countdown div {
+    position: absolute;
+    text-align: center;
+    font-weight: 500;
+    color: #fff;
+    font-size: 2em
+}

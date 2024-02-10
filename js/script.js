@@ -21,7 +21,10 @@ let countdown = setInterval(function () {
     checkPlural(days, hours, minutes, seconds, words);
 
 
-    document.querySelector("#countdown").innerHTML = `- ${days} ${words[3]} ${hours} ${words[2]} ${minutes} ${words[1]} ${seconds} ${words[0]}`;
+    document.querySelector("#days").innerHTML = ` ${days}`;
+    document.querySelector("#hours").innerHTML = ` ${hours}`;
+    document.querySelector("#minutes").innerHTML = ` ${minutes}`;
+    document.querySelector("#seconds").innerHTML = ` ${seconds}`;
 
 
     if (difference < 0) {
