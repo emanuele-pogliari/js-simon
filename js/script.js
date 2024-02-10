@@ -1,5 +1,7 @@
 // get date of countdown in milliseconds
-let targetDate = new Date("Feb 12 2024, 09:30:00").getTime();
+let targetDate = new Date("Feb 10 2024, 19:55:00").getTime();
+
+countdownElement = document.querySelector("#countdown");
 
 let circleDaysStroke = document.querySelector("#dd");
 let circleHoursStroke = document.querySelector("#hh");
@@ -10,6 +12,8 @@ let circleDays = document.querySelector("#days");
 let circleHours = document.querySelector("#hours");
 let circleMinutes = document.querySelector("#minutes");
 let circleSeconds = document.querySelector("#seconds");
+
+let activateFireworks = document.querySelector(".fireworks-container");
 
 // set an interval for 1s
 let countdown = setInterval(function () {
@@ -24,20 +28,30 @@ let countdown = setInterval(function () {
     let hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     let minutes = Math.floor(difference % (1000 * 60 * 60) / (1000 * 60));
     let seconds = Math.floor(difference % (1000 * 60) / 1000);
-    let words = ["secondi", "minuti", "ore", "giorni"];
+    let words = ["giorni", "ore", "minuti", "secondi"];
 
     checkPlural(days, hours, minutes, seconds, words);
 
 
-    document.querySelector("#days").innerHTML = ` ${days}`;
-    document.querySelector("#hours").innerHTML = ` ${hours}`;
-    document.querySelector("#minutes").innerHTML = ` ${minutes}`;
-    document.querySelector("#seconds").innerHTML = ` ${seconds}`;
+    circleDays.innerHTML = `${days}`;
+    circleHours.innerHTML = ` ${hours}`;
+    circleMinutes.innerHTML = `${minutes}`;
+    circleSeconds.innerHTML = ` ${seconds}`;
+
+    for (let i = 0; i < words.length; i++) {
+        document.querySelectorAll(".word")[i].innerHTML = `${words[i]}`
+    }
 
 
     if (difference < 0) {
 
-        document.querySelector("#countdown").innerHTML = `- ${0} ${0} ${0} ${0}`;
+        document.querySelector("#countdown").innerHTML = `- ${"00"} ${"00"}:${"00"}:${"00"}`;
+        activateFireworks.style.opacity = 1;
+        countdownElement.classList.add("count-over");
+        document.querySelector(".title").innerHTML = "Good Morning!"
+        document.querySelector(".title").classList.add("count-over-text");
+
+
     }
     circleDaysStroke.style.strokeDashoffset = 440 - (440 * days) / 365;
     circleHoursStroke.style.strokeDashoffset = 440 - (440 * hours) / 24;
@@ -47,17 +61,17 @@ let countdown = setInterval(function () {
 
 
 function checkPlural(days, hours, minutes, seconds, words) {
-    if (seconds == 1) {
-        words[0] = "secondo";
-    }
-    if (minutes == 1) {
-        words[1] = "minuto";
+    if (days == 1) {
+        words[0] = "giorno";
     }
     if (hours == 1) {
-        words[2] = "ora";
+        words[1] = "ora";
     }
-    if (days == 1) {
-        words[3] = "giorno";
+    if (minutes == 1) {
+        words[2] = "minuto";
+    }
+    if (seconds == 1) {
+        words[3] = "secondo";
     }
 }
 
