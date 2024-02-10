@@ -45,6 +45,7 @@ body {
 }
 
 #countdown .circle-time svg circle:nth-child(2) {
+    --clr: #0000FF;
     stroke: var(--clr);
     stroke-dasharray: 440;
 }
@@ -54,5 +55,28 @@ body {
     text-align: center;
     font-weight: 500;
     color: #fff;
-    font-size: 2em
+    font-size: 1.5em
+}
+
+#countdown .dot {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 100;
+}
+
+#countdown .dot::before {
+    content: " ";
+    position: absolute;
+    top: -3px;
+    width: 15px;
+    height: 15px;
+    background-color: var(--clr);
+    border-radius: 50%;
+    box-shadow: 0 0 20px var(--clr),
+        0 0 60px var(--clr);
 }
