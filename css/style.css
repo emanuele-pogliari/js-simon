@@ -8,8 +8,9 @@
 /* reset rules */
 
 h1 {
-    color: white;
     padding-bottom: 80px;
+    color: white;
+
     font-weight: 100;
 }
 
@@ -18,62 +19,105 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 0;
+
+    height: 100vh;
     min-height: 100vh;
+
+    overflow: hidden;
     background:
         linear-gradient(#0007, #0000),
         #123;
-    margin: 0;
-    height: 100vh;
-    overflow: hidden;
 }
 
+/* style main cointainer */
 #countdown {
     display: flex;
     gap: 30px;
+
     z-index: 10;
 }
 
+/* single circle */
 #countdown .circle-time {
     display: flex;
     justify-content: center;
     align-items: center;
+
     position: relative;
+
     width: 150px;
     height: 150px;
 }
 
+/* style all svg elements */
 #countdown .circle-time svg {
     position: relative;
+
     width: 150px;
     height: 150px;
+
     transform: rotate(270deg);
 }
 
+/* style all circles elements inside svg */
 #countdown .circle-time svg circle {
     width: 100%;
     height: 100%;
+
     fill: transparent;
+    /* set the line of the circle */
     stroke-width: 6;
     stroke: #282828;
+
     transform: translate(5px, 5px);
 }
 
+/* select only the second circle inside the svg and change style of the line with color and othe effects */
 #countdown .circle-time svg circle:nth-child(2) {
+    /* change the color of the circle line using a variable  */
     stroke: var(--clr);
     stroke-dasharray: 440;
     stroke-dashoffset: 440;
     stroke-linecap: round;
 }
 
+/* element tha show data on screen */
 #countdown div {
     position: absolute;
+
     text-align: center;
     font-weight: 100;
     color: #fff;
     font-size: 1.7em
 }
 
+/* firework container */
+.fireworks-container {
+    opacity: 0;
+}
 
+/* change the position of the word "day, hours, minutes, seconds, place it under every circles */
+.word {
+    position: absolute;
+    transform: translateY(170%);
+}
+
+/* once countdown is over, it will change dimension of the text countdown and activate an animation that will flash it */
+.count-over {
+    color: #fff;
+    font-size: 62px;
+    font-weight: 100;
+    animation: showCount 2s linear infinite;
+}
+
+/* once countdown is over, it will change dimension of the text */
+.count-over-text {
+    font-size: 60px;
+}
+
+
+/* fireworks animation */
 @keyframes firework {
     0% {
         transform: translate(var(--x), var(--initialY));
@@ -223,27 +267,12 @@ body {
     animation-delay: -0.4s;
 }
 
-.fireworks-container {
-    opacity: 0;
-}
+/* end firework animation */
 
 
-.word {
-    position: absolute;
-    transform: translateY(170%);
-}
 
-.count-over {
-    color: #fff;
-    font-size: 62px;
-    font-weight: 100;
-    animation: showCount 2s linear infinite;
-}
 
-.count-over-text {
-    font-size: 60px;
-}
-
+/* animation flashing text */
 @keyframes showCount {
     0% {
         opacity: 1;

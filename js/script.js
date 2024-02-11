@@ -1,6 +1,7 @@
 // get date of countdown in milliseconds
-let targetDate = new Date("Feb 10 2024, 19:55:00").getTime();
+let targetDate = new Date("Feb 12 2024, 09:30:00").getTime();
 
+// select the countdown container, every circle and every stroke circle that will be modified
 countdownElement = document.querySelector("#countdown");
 
 let circleDaysStroke = document.querySelector("#dd");
@@ -12,6 +13,8 @@ let circleDays = document.querySelector("#days");
 let circleHours = document.querySelector("#hours");
 let circleMinutes = document.querySelector("#minutes");
 let circleSeconds = document.querySelector("#seconds");
+
+// select container fireworks
 
 let activateFireworks = document.querySelector(".fireworks-container");
 
@@ -30,19 +33,21 @@ let countdown = setInterval(function () {
     let seconds = Math.floor(difference % (1000 * 60) / 1000);
     let words = ["giorni", "ore", "minuti", "secondi"];
 
-    checkPlural(days, hours, minutes, seconds, words);
+    // call function that will check if every single data remaing is equals to 1
+    checkSingular(days, hours, minutes, seconds, words);
 
-
+    // assign data to every circles
     circleDays.innerHTML = `${days}`;
     circleHours.innerHTML = ` ${hours}`;
     circleMinutes.innerHTML = `${minutes}`;
     circleSeconds.innerHTML = ` ${seconds}`;
 
+    // assign text value under every circle
     for (let i = 0; i < words.length; i++) {
         document.querySelectorAll(".word")[i].innerHTML = `${words[i]}`
     }
 
-
+    // if the difference between actual date and data target is negative this condition will stop the interval function and will activate fireworks, also shows messages
     if (difference < 0) {
 
         clearInterval(countdown);
@@ -53,14 +58,15 @@ let countdown = setInterval(function () {
         document.querySelector(".title").innerHTML = "Good Morning!"
         document.querySelector(".title").classList.add("count-over-text");
     }
+    // adapt every stroke to the time remaing.
     circleDaysStroke.style.strokeDashoffset = 440 - (440 * days) / 365;
     circleHoursStroke.style.strokeDashoffset = 440 - (440 * hours) / 24;
     circleMinutesStroke.style.strokeDashoffset = 440 - (440 * minutes) / 60;
     circleSecondsStroke.style.strokeDashoffset = 440 - (440 * seconds) / 60;
 }, 1000)
 
-
-function checkPlural(days, hours, minutes, seconds, words) {
+// function that will check if single data time is equals to 1 and change plural words to singular
+function checkSingular(days, hours, minutes, seconds, words) {
     if (days == 1) {
         words[0] = "giorno";
     }
