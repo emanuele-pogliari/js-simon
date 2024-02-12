@@ -1,5 +1,5 @@
 // get date of countdown in milliseconds
-let targetDate = new Date("Feb 12 2024, 09:30:00").getTime();
+let targetDate = new Date("Feb 12 2024, 11:00:00").getTime();
 
 // select the countdown container, every circle and every stroke circle that will be modified
 countdownElement = document.querySelector("#countdown");
@@ -31,7 +31,7 @@ let countdown = setInterval(function () {
     let hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     let minutes = Math.floor(difference % (1000 * 60 * 60) / (1000 * 60));
     let seconds = Math.floor(difference % (1000 * 60) / 1000);
-    let words = ["giorni", "ore", "minuti", "secondi"];
+    let words = ["days", "hours", "minutes", "seconds"];
 
     // call function that will check if every single data remaing is equals to 1
     checkSingular(days, hours, minutes, seconds, words);
@@ -59,7 +59,7 @@ let countdown = setInterval(function () {
         document.querySelector(".title").classList.add("count-over-text");
     }
     // adapt every stroke to the time remaing.
-    circleDaysStroke.style.strokeDashoffset = 440 - (440 * days) / 365;
+    circleDaysStroke.style.strokeDashoffset = 440 - (440 * days) / 28;
     circleHoursStroke.style.strokeDashoffset = 440 - (440 * hours) / 24;
     circleMinutesStroke.style.strokeDashoffset = 440 - (440 * minutes) / 60;
     circleSecondsStroke.style.strokeDashoffset = 440 - (440 * seconds) / 60;
@@ -68,16 +68,16 @@ let countdown = setInterval(function () {
 // function that will check if single data time is equals to 1 and change plural words to singular
 function checkSingular(days, hours, minutes, seconds, words) {
     if (days == 1) {
-        words[0] = "giorno";
+        words[0] = "day";
     }
     if (hours == 1) {
-        words[1] = "ora";
+        words[1] = "hour";
     }
     if (minutes == 1) {
-        words[2] = "minuto";
+        words[2] = "minute";
     }
     if (seconds == 1) {
-        words[3] = "secondo";
+        words[3] = "second";
     }
 }
 
